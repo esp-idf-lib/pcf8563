@@ -11,7 +11,7 @@ Driver for PCF8563 (BM8563) real-time clock/calendar.
 ## Installation
 
 ```sh
-idf.py add-dependency "esp-idf-lib/pcf8563^1.0.0
+idf.py add-dependency esp-idf-lib/pcf8563^1.0.0
 ```
 
 ## Support
