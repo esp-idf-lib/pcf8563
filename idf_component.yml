@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.0.4
 description: Driver for PCF8563 (BM8563) real-time clock/calendar
 license: BSD-3
 targets:
