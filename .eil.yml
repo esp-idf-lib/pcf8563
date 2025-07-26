@@ -1,7 +1,7 @@
 ---
 name: pcf8563
 description: Driver for PCF8563 (BM8563) real-time clock/calendar
-version: 1.0.0
+version: 1.0.1
 groups:
   - rtc
 code_owners: UncleRus
