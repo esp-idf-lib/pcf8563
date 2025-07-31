@@ -166,7 +166,8 @@ esp_err_t pcf8563_set_time(i2c_dev_t *dev, struct tm *time)
 
     bool ovf = time->tm_year >= 200;
 
-    uint8_t data[7] = {
+    uint8_t data[7] =
+    {
         dec2bcd(time->tm_sec),
         dec2bcd(time->tm_min),
         dec2bcd(time->tm_hour),
@@ -210,10 +211,10 @@ esp_err_t pcf8563_set_clkout(i2c_dev_t *dev, pcf8563_clkout_freq_t freq)
     CHECK_ARG(dev);
 
     return write_reg(dev, REG_CLKOUT,
-            freq == PCF8563_DISABLED
-                ? 0
-                : (BV(BIT_CLKOUT_FE) | ((freq - 1) & 3))
-           );
+                     freq == PCF8563_DISABLED
+                     ? 0
+                     : (BV(BIT_CLKOUT_FE) | ((freq - 1) & 3))
+                    );
 }
 
 esp_err_t pcf8563_get_clkout(i2c_dev_t *dev, pcf8563_clkout_freq_t *freq)
@@ -233,7 +234,7 @@ esp_err_t pcf8563_set_timer_settings(i2c_dev_t *dev, bool int_enable, pcf8563_ti
 
     I2C_DEV_TAKE_MUTEX(dev);
     I2C_DEV_CHECK(dev, update_reg_nolock(dev, REG_CTRL_STATUS2,
-            BV(BIT_CTRL_STATUS2_TIE), int_enable ? BV(BIT_CTRL_STATUS2_TIE) : 0));
+                                         BV(BIT_CTRL_STATUS2_TIE), int_enable ? BV(BIT_CTRL_STATUS2_TIE) : 0));
     I2C_DEV_CHECK(dev, update_reg_nolock(dev, REG_TIMER_CTRL, MASK_TIMER_CTRL_TD, clock));
     I2C_DEV_GIVE_MUTEX(dev);
 
@@ -308,8 +309,9 @@ esp_err_t pcf8563_set_alarm(i2c_dev_t *dev, bool int_enable, uint32_t flags, str
 
     I2C_DEV_TAKE_MUTEX(dev);
     I2C_DEV_CHECK(dev, update_reg_nolock(dev, REG_CTRL_STATUS2,
-            BV(BIT_CTRL_STATUS2_AIE), int_enable ? BV(BIT_CTRL_STATUS2_AIE) : 0));
-    uint8_t data[4] = {
+                                         BV(BIT_CTRL_STATUS2_AIE), int_enable ? BV(BIT_CTRL_STATUS2_AIE) : 0));
+    uint8_t data[4] =
+    {
         dec2bcd(time->tm_min) | (flags & PCF8563_ALARM_MATCH_MIN ? 0 : BV(BIT_AE)),
         dec2bcd(time->tm_hour) | (flags & PCF8563_ALARM_MATCH_HOUR ? 0 : BV(BIT_AE)),
         dec2bcd(time->tm_mday) | (flags & PCF8563_ALARM_MATCH_DAY ? 0 : BV(BIT_AE)),

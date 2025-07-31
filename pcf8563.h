@@ -53,7 +53,8 @@ extern "C" {
 /**
  * Frequency output at pin CLKOUT
  */
-typedef enum {
+typedef enum
+{
     PCF8563_DISABLED = 0, //!< CLKOUT output is inhibited and set high-impedance
     PCF8563_32768HZ,      //!< 32768 Hz
     PCF8563_1024HZ,       //!< 1024 Hz
@@ -64,7 +65,8 @@ typedef enum {
 /**
  * Timer clock
  */
-typedef enum {
+typedef enum
+{
     PCF8563_TIMER_4096HZ = 0, //!< 4096 Hz
     PCF8563_TIMER_64HZ,       //!< 64 Hz
     PCF8563_TIMER_1HZ,        //!< 1 Hz
@@ -74,7 +76,8 @@ typedef enum {
 /**
  * Flags to setup alarm
  */
-typedef enum {
+typedef enum
+{
     PCF8563_ALARM_MATCH_MIN     = 0x01, //!< Alarm when minute matched
     PCF8563_ALARM_MATCH_HOUR    = 0x02, //!< Alarm when hour matched
     PCF8563_ALARM_MATCH_DAY     = 0x04, //!< Alarm when day matched
